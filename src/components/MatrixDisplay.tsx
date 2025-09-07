@@ -13,17 +13,17 @@ export const MatrixDisplay = ({ matrix, title, highlight = false, showTrace = fa
   const isSquare = matrix.length === matrix[0]?.length;
 
   return (
-    <Card className={`p-6 transition-all duration-500 ${
+    <Card className={`p-6 border ${
       highlight 
-        ? 'bg-gradient-secondary border-matrix-secondary animate-matrix-glow' 
-        : 'bg-gradient-accent border-matrix-primary/20'
+        ? 'bg-muted' 
+        : 'bg-card'
     }`}>
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-semibold bg-gradient-primary bg-clip-text text-transparent">
+        <h3 className="text-xl font-semibold text-foreground">
           {title}
         </h3>
         {showTrace && isSquare && (
-          <Badge variant="secondary" className="bg-matrix-primary/20 text-matrix-primary border-matrix-primary/30">
+          <Badge variant="secondary" className="border">
             След: {trace}
           </Badge>
         )}
@@ -35,10 +35,10 @@ export const MatrixDisplay = ({ matrix, title, highlight = false, showTrace = fa
             {row.map((cell, j) => (
               <div
                 key={`${i}-${j}`}
-                className={`w-12 h-12 border border-matrix-grid/30 rounded flex items-center justify-center text-sm font-medium transition-all duration-300 ${
+                className={`w-12 h-12 border rounded flex items-center justify-center text-sm font-medium transition-colors ${
                   showTrace && i === j && isSquare
-                    ? 'bg-matrix-primary/20 text-matrix-primary border-matrix-primary animate-number-bounce'
-                    : 'bg-muted/50 hover:bg-muted'
+                    ? 'bg-foreground text-background'
+                    : 'bg-muted hover:bg-muted/80'
                 }`}
               >
                 {cell}

@@ -49,8 +49,8 @@ export const MatrixInput = ({ onMatrixChange, title }: MatrixInputProps) => {
   };
 
   return (
-    <Card className="p-6 bg-gradient-primary border-matrix-primary/20">
-      <h3 className="text-xl font-semibold mb-4 text-center bg-gradient-primary bg-clip-text text-transparent">
+    <Card className="p-6 border">
+      <h3 className="text-xl font-semibold mb-4 text-center text-foreground">
         {title}
       </h3>
       
@@ -64,7 +64,7 @@ export const MatrixInput = ({ onMatrixChange, title }: MatrixInputProps) => {
             max="5"
             value={rows}
             onChange={(e) => updateMatrixSize(Number(e.target.value), cols)}
-            className="w-16 h-8 text-center bg-muted border-matrix-primary/30"
+            className="w-16 h-8 text-center border"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ export const MatrixInput = ({ onMatrixChange, title }: MatrixInputProps) => {
             max="5"
             value={cols}
             onChange={(e) => updateMatrixSize(rows, Number(e.target.value))}
-            className="w-16 h-8 text-center bg-muted border-matrix-primary/30"
+            className="w-16 h-8 text-center border"
           />
         </div>
       </div>
@@ -90,7 +90,7 @@ export const MatrixInput = ({ onMatrixChange, title }: MatrixInputProps) => {
                 type="number"
                 value={cell}
                 onChange={(e) => updateCell(i, j, Number(e.target.value) || 0)}
-                className="w-12 h-12 text-center bg-secondary border-matrix-secondary/30 hover:border-matrix-secondary/60 transition-all duration-300 hover:animate-number-bounce"
+                className="w-12 h-12 text-center border hover:border-foreground/50 transition-colors"
               />
             ))}
           </div>
@@ -100,7 +100,7 @@ export const MatrixInput = ({ onMatrixChange, title }: MatrixInputProps) => {
       <Button 
         onClick={generateRandomMatrix}
         variant="outline"
-        className="w-full border-matrix-accent/50 hover:border-matrix-accent hover:bg-matrix-accent/10 transition-all duration-300"
+        className="w-full"
       >
         Случайная матрица
       </Button>
