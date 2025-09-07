@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        matrix: {
+          primary: "hsl(var(--matrix-primary))",
+          secondary: "hsl(var(--matrix-secondary))",
+          accent: "hsl(var(--matrix-accent))",
+          grid: "hsl(var(--matrix-grid))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -62,6 +68,11 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        "gradient-primary": "var(--gradient-primary)",
+        "gradient-secondary": "var(--gradient-secondary)",
+        "gradient-accent": "var(--gradient-accent)",
       },
       keyframes: {
         "accordion-down": {
@@ -80,10 +91,26 @@ export default {
             height: "0",
           },
         },
+        "matrix-flip": {
+          "0%": { transform: "perspective(400px) rotateY(0deg)" },
+          "50%": { transform: "perspective(400px) rotateY(90deg)" },
+          "100%": { transform: "perspective(400px) rotateY(0deg)" },
+        },
+        "matrix-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--matrix-primary) / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--matrix-primary) / 0.8)" },
+        },
+        "number-bounce": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "matrix-flip": "matrix-flip 0.8s ease-in-out",
+        "matrix-glow": "matrix-glow 2s ease-in-out infinite",
+        "number-bounce": "number-bounce 0.5s ease-in-out",
       },
     },
   },
