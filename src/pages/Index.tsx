@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { MatrixInput } from "@/components/MatrixInput";
 import { MatrixDisplay } from "@/components/MatrixDisplay";
 import { OperationSteps } from "@/components/OperationSteps";
+import { AlgorithmDescription } from "@/components/AlgorithmDescription";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { transposeMatrix, calculateTrace, getTransposeSteps, getTraceSteps } from "@/utils/matrixOperations";
@@ -186,6 +187,9 @@ const Index = () => {
             </div>
           </Card>
         )}
+        
+        {/* Algorithm Description */}
+        <AlgorithmDescription />
       </div>
     </div>
   );
