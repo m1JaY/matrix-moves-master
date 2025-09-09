@@ -1,186 +1,217 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, ArrowRight, RotateCcw, Calculator } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Code, RotateCcw, Calculator } from "lucide-react";
 
 export const AlgorithmDescription = () => {
+  const transposeSteps = [
+    {
+      step: 1,
+      operation: "Определение размеров",
+      description: "Получаем размеры исходной матрицы A[m×n]",
+      pseudocode: "rows = matrix.length; cols = matrix[0].length",
+      complexity: "O(1)"
+    },
+    {
+      step: 2,
+      operation: "Создание новой матрицы", 
+      description: "Создаем пустую матрицу A^T[n×m] для результата",
+      pseudocode: "transposed = new Array(cols).fill(null).map(() => new Array(rows))",
+      complexity: "O(n×m)"
+    },
+    {
+      step: 3,
+      operation: "Обход элементов",
+      description: "Проходим по всем элементам исходной матрицы",
+      pseudocode: "for i = 0 to rows-1: for j = 0 to cols-1",
+      complexity: "O(m×n)"
+    },
+    {
+      step: 4,
+      operation: "Перестановка индексов",
+      description: "Меняем местами строки и столбцы: A^T[j][i] = A[i][j]",
+      pseudocode: "transposed[j][i] = matrix[i][j]",
+      complexity: "O(1) на элемент"
+    }
+  ];
+
+  const traceSteps = [
+    {
+      step: 1,
+      operation: "Проверка квадратности",
+      description: "Убеждаемся, что матрица квадратная (n×n)",
+      pseudocode: "if (matrix.length !== matrix[0].length) throw error",
+      complexity: "O(1)"
+    },
+    {
+      step: 2,
+      operation: "Инициализация суммы",
+      description: "Создаем переменную для накопления суммы",
+      pseudocode: "let trace = 0",
+      complexity: "O(1)"
+    },
+    {
+      step: 3,
+      operation: "Суммирование диагонали",
+      description: "Проходим по главной диагонали и суммируем A[i][i]",
+      pseudocode: "for i = 0 to n-1: trace += matrix[i][i]",
+      complexity: "O(n)"
+    },
+    {
+      step: 4,
+      operation: "Возврат результата",
+      description: "Возвращаем итоговую сумму диагональных элементов",
+      pseudocode: "return trace",
+      complexity: "O(1)"
+    }
+  ];
+
   return (
     <Card className="p-8 border">
-      <h2 className="text-2xl font-semibold mb-6 text-center text-foreground flex items-center justify-center gap-3">
+      <h2 className="text-2xl font-semibold mb-8 text-center text-foreground flex items-center justify-center gap-3">
         <Code className="w-6 h-6" />
         Описание алгоритмов решения
       </h2>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="space-y-10">
         {/* Алгоритм транспонирования */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="flex items-center gap-3 mb-4">
             <RotateCcw className="w-5 h-5 text-foreground" />
-            <h3 className="text-xl font-medium text-foreground">Алгоритм транспонирования</h3>
+            <h3 className="text-xl font-medium text-foreground">Алгоритм транспонирования матрицы</h3>
           </div>
           
-          <div className="space-y-4">
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                1
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Определение размеров</h4>
-                <p className="text-sm text-muted-foreground">
-                  Для матрицы A[m×n] создаем новую матрицу A^T[n×m]
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">rows = matrix.length, cols = matrix[0].length</code>
-                </div>
-              </div>
-            </div>
-
-            <ArrowRight className="w-4 h-4 text-muted-foreground mx-auto" />
-
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                2
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Обход элементов</h4>
-                <p className="text-sm text-muted-foreground">
-                  Проходим по всем элементам исходной матрицы
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">for i = 0 to rows-1, for j = 0 to cols-1</code>
-                </div>
-              </div>
-            </div>
-
-            <ArrowRight className="w-4 h-4 text-muted-foreground mx-auto" />
-
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                3
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Перестановка индексов</h4>
-                <p className="text-sm text-muted-foreground">
-                  Меняем местами строки и столбцы: A^T[j][i] = A[i][j]
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">transposed[j][i] = matrix[i][j]</code>
-                </div>
-              </div>
-            </div>
+          <div className="border rounded-lg">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-16">Шаг</TableHead>
+                  <TableHead className="w-48">Операция</TableHead>
+                  <TableHead>Описание</TableHead>
+                  <TableHead className="w-80">Псевдокод</TableHead>
+                  <TableHead className="w-24">Сложность</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {transposeSteps.map((step) => (
+                  <TableRow key={step.step}>
+                    <TableCell>
+                      <Badge variant="outline" className="w-8 h-8 rounded-full flex items-center justify-center p-0">
+                        {step.step}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="font-medium text-foreground">
+                      {step.operation}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {step.description}
+                    </TableCell>
+                    <TableCell>
+                      <code className="text-xs font-mono bg-muted p-2 rounded border block">
+                        {step.pseudocode}
+                      </code>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary" className="text-xs">
+                        {step.complexity}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
 
           <div className="p-4 bg-accent/50 rounded-lg border">
-            <h5 className="font-medium text-foreground mb-2">Сложность алгоритма:</h5>
             <p className="text-sm text-muted-foreground">
-              • Временная: O(m×n) - нужно обойти все элементы<br/>
-              • Пространственная: O(n×m) - для новой матрицы
+              <strong className="text-foreground">Итоговая сложность:</strong> Временная O(m×n), Пространственная O(n×m)
             </p>
           </div>
         </div>
 
         {/* Алгоритм вычисления следа */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="flex items-center gap-3 mb-4">
             <Calculator className="w-5 h-5 text-foreground" />
-            <h3 className="text-xl font-medium text-foreground">Алгоритм вычисления следа</h3>
+            <h3 className="text-xl font-medium text-foreground">Алгоритм вычисления следа матрицы</h3>
           </div>
           
-          <div className="space-y-4">
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                1
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Проверка квадратности</h4>
-                <p className="text-sm text-muted-foreground">
-                  Убеждаемся, что матрица квадратная (n×n)
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">if (rows !== cols) throw error</code>
-                </div>
-              </div>
-            </div>
-
-            <ArrowRight className="w-4 h-4 text-muted-foreground mx-auto" />
-
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                2
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Инициализация суммы</h4>
-                <p className="text-sm text-muted-foreground">
-                  Создаем переменную для накопления суммы диагональных элементов
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">let trace = 0</code>
-                </div>
-              </div>
-            </div>
-
-            <ArrowRight className="w-4 h-4 text-muted-foreground mx-auto" />
-
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                3
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Суммирование диагонали</h4>
-                <p className="text-sm text-muted-foreground">
-                  Проходим по главной диагонали и суммируем элементы A[i][i]
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">for i = 0 to n-1: trace += matrix[i][i]</code>
-                </div>
-              </div>
-            </div>
-
-            <ArrowRight className="w-4 h-4 text-muted-foreground mx-auto" />
-
-            <div className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg border">
-              <Badge variant="outline" className="w-6 h-6 rounded-full flex items-center justify-center p-0 text-xs">
-                4
-              </Badge>
-              <div className="space-y-2">
-                <h4 className="font-medium text-foreground">Возврат результата</h4>
-                <p className="text-sm text-muted-foreground">
-                  Возвращаем итоговую сумму диагональных элементов
-                </p>
-                <div className="bg-muted p-2 rounded border">
-                  <code className="text-xs font-mono text-foreground">return trace</code>
-                </div>
-              </div>
-            </div>
+          <div className="border rounded-lg">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-16">Шаг</TableHead>
+                  <TableHead className="w-48">Операция</TableHead>
+                  <TableHead>Описание</TableHead>
+                  <TableHead className="w-80">Псевдокод</TableHead>
+                  <TableHead className="w-24">Сложность</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {traceSteps.map((step) => (
+                  <TableRow key={step.step}>
+                    <TableCell>
+                      <Badge variant="outline" className="w-8 h-8 rounded-full flex items-center justify-center p-0">
+                        {step.step}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="font-medium text-foreground">
+                      {step.operation}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {step.description}
+                    </TableCell>
+                    <TableCell>
+                      <code className="text-xs font-mono bg-muted p-2 rounded border block">
+                        {step.pseudocode}
+                      </code>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="secondary" className="text-xs">
+                        {step.complexity}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
 
           <div className="p-4 bg-accent/50 rounded-lg border">
-            <h5 className="font-medium text-foreground mb-2">Сложность алгоритма:</h5>
             <p className="text-sm text-muted-foreground">
-              • Временная: O(n) - проходим только по диагонали<br/>
-              • Пространственная: O(1) - используем только одну переменную
+              <strong className="text-foreground">Итоговая сложность:</strong> Временная O(n), Пространственная O(1)
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="mt-8 p-6 bg-muted/30 rounded-lg border">
-        <h4 className="text-lg font-medium text-foreground mb-3">Практические применения:</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <h5 className="font-medium text-foreground mb-2">Транспонирование:</h5>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Решение систем линейных уравнений</li>
-              <li>• Компьютерная графика (поворот объектов)</li>
-              <li>• Обработка изображений</li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-medium text-foreground mb-2">След матрицы:</h5>
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Характеристический полином</li>
-              <li>• Инварианты линейных преобразований</li>
-              <li>• Машинное обучение (градиентный спуск)</li>
-            </ul>
+        {/* Практические применения */}
+        <div className="mt-8 p-6 bg-muted/30 rounded-lg border">
+          <h4 className="text-lg font-medium text-foreground mb-4">Практические применения:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h5 className="font-medium text-foreground mb-3 flex items-center gap-2">
+                <RotateCcw className="w-4 h-4" />
+                Транспонирование матрицы:
+              </h5>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Решение систем линейных уравнений методом Гаусса</li>
+                <li>• Компьютерная графика (поворот и отражение объектов)</li>
+                <li>• Обработка изображений и сигналов</li>
+                <li>• Вычисление скалярного произведения векторов</li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="font-medium text-foreground mb-3 flex items-center gap-2">
+                <Calculator className="w-4 h-4" />
+                След матрицы:
+              </h5>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Вычисление характеристического полинома</li>
+                <li>• Инварианты линейных преобразований</li>
+                <li>• Машинное обучение (оптимизация нейронных сетей)</li>
+                <li>• Квантовая механика (ожидаемые значения операторов)</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
